@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html"   charset="ISO-8859-1">
+<title>Registration Portal</title>
+<script type="text/javascript">
+function check()
+{
+	var un=document.getElementById("username").value;
+	if(un.length==0 || un.length>15)
+		{
+			alert("Username cannot be blank or cannot be more than 15");
+		}
+	var pw=document.getElementById("password").value;
+	if(pw.length<=0 || pw.length>10)
+		{
+			alert("Password cannot be left blank or more than 10");
+		}
+	var nm=document.getElementById("fullname").value;
+	if(nm.length<=0 || nm.length>40)
+		{
+			alert("fullname may/maynot be save please contact")
+		}
+}
+
+ function passvalid()
+{
+	var pass=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$&])[A-Za-z\d!@#$&]{5,10}$/;
+	var pw=document.getElementById("password").value;
+	if(!(pw.match(pass)))
+		{
+			alert("Password Must have Minimum 1 Character, 1 Number and 1 Special Character");
+			document.getElementById("password").focus();
+		}
+}
+ 
+function phvalid()
+{
+	var z=/^[789]\d{9}$/; //phone number should start with 7 or 8 or 9
+	var zp=document.getElementById("phoneno").value;
+	if(!(zp.match(z)))
+		{
+			alert("Enter 10 Digits");
+		}
+}
+function emailvalid()
+{
+	var e=/^\w+([\._-]?\w+)*@\w+([\._-]?\w+)*(\.\w{2,3})+$/;  //jayesh_seed.gharat@info.j-g.com
+	var em=document.getElementById("email").value;
+	if(!(em.match(e)))
+		{
+			alert("You have entered an invalid email address!");
+			document.getElementById("email").focus;
+		}	
+} 
+	
+</script>
+</head>
+<body>
+<h1>Registration</h1>
+<form action='RegistrationServlet' method='post'>
+<table>
+<tr><td>UserName</td><td><input type='text' id='username' name='username' /> </td></tr>
+<tr><td>Password</td><td><input type='password' id='password' name='password' onblur='passvalid()' /></td></tr>
+<tr><td>Full Name</td><td><input type='text' id='fullname' name='fullname' /></td></tr>
+<tr><td>Gender</td>
+<td><input type='radio' name='gender' value='male' />Male
+	<input type='radio' name='gender' value='female'/>Female
+</td></tr>
+<tr><td>Email</td><td><input type='text' id='email' name='email' onblur='emailvalid()' /></td></tr>
+<tr><td>Mobile Number</td><td><input type='text' id='phoneno' name='phoneno' onblur='phvalid()' /></td></tr>
+<tr><td>Batch Code</td>
+<td><select id='batch' name='batch'> 
+<option>SCTS-26</option>
+<option>SCTS-25</option>
+<option>SCTS-24</option>
+</select>
+</td></tr> 
+<tr><td><input type='submit'value='Register' onclick='check()' /></td></tr>
+</table>
+</form>
+</body>
+</html>
